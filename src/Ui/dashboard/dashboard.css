@@ -1,0 +1,26 @@
+.backcode{
+    background-image: url('../../photo/RoundedRectangle14copy.png');
+    width: 300px;
+    height: 200px;
+    background-size: cover;
+border-radius: 10px;
+}
+.backsupport{
+    background-image: url('../../photo/Ellipse7copy2.png');
+    width: 300px;
+    height: 200px;
+    background-size: cover;
+border-radius: 10px;
+}
+.tabs{
+    background-color: transparent;
+}
+.tabs:focus {
+    color: blue;
+}
+.tabs:active{
+    color: blue;
+}
+.tabs:hover{
+    color: blue;
+}

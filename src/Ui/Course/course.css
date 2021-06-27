@@ -1,0 +1,13 @@
+.back{
+    background-image: url('../../photo/Vector\ Smart\ Object_1.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    width: 150vh;
+    /* background-color: black; */
+}
+.colorback{
+    background-color: #3798c7;
+}
