@@ -60,4 +60,14 @@ label#largeFile:after {
     visibility: visible;
     
   }
-  
+
+
+
+
+@media only screen and (max-width: 600px) {
+    /*.row{*/
+    /*    margin-right: 0!important;*/
+    /*    margin-left: 0!important;*/
+    /*}*/
+
+}

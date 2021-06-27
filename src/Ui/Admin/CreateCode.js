@@ -8,7 +8,10 @@ import {Config} from '../../Utils'
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Logo from '../../photo/logo.png';
-const JDate = require('jalali-date');
+import {ALertCenter, CenterModal} from "../Common/Modals/Modals";
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import {AiOutlineCopy} from "react-icons/all";
+ const JDate = require('jalali-date');
 
 class AdminAddClass extends Component {
     componentDidMount() {
@@ -39,7 +42,10 @@ class AdminAddClass extends Component {
             id_edit: '',
             showdetail: false,
             code: [],
-            lname: ''
+            lname: '',
+            trialCode:"",
+            showModal:false,
+            copied:false
         }
     }
 
@@ -104,6 +110,16 @@ class AdminAddClass extends Component {
 
 
     last_submit = () => {
+        this.setState({
+            trialCode:'arsenal',
+            showModal:true
+        })
+
+
+
+
+
+
         var Item = {}
         Item.lastName = this.state.lname
         Item.name = this.state.name
@@ -129,8 +145,16 @@ class AdminAddClass extends Component {
 
                 if (response.status === 200) {
                     response.json().then(rep => {
+                        console.log(rep)
+                        this.getCode();
+                        this.setState({
+                            trialCode:rep.trialCode,
+                            showModal:true
+                        })
 
-                        window.location.reload()
+
+
+                        // window.location.reload()
                     })
                 }
 
@@ -138,6 +162,7 @@ class AdminAddClass extends Component {
             })
             .catch(error => console.log('error', error));
     }
+
 
 
     closeblur = () => {
@@ -324,7 +349,7 @@ class AdminAddClass extends Component {
                             </div>
                         </div>
    */}
-                        <div class='row' style={{marginTop: '50px', marginBottom: '50px'}}>
+                        <div class='row mr-0 ml-0' style={{marginTop: '50px', marginBottom: '50px'}}>
                             <div class='col-12 '
                                  style={{display: "flex", justifyContent: 'center', alignItems: 'center'}}>
                                 <Button onClick={this.last_submit} style={{
@@ -341,7 +366,7 @@ class AdminAddClass extends Component {
 
                         </div>
 
-                        <div className='row' style={{paddingTop: '50px'}}>
+                        <div className='row mr-0 ml-0' style={{paddingTop: '50px'}}>
                             <div className='col-3' style={{textAlign: 'center'}}>
                                 <h6>تاریخ انقضاء</h6>
                             </div>
@@ -350,18 +375,24 @@ class AdminAddClass extends Component {
                                 <h6>VIP</h6>
                             </div>
                             <div className='col-3' style={{textAlign: 'center'}}>
-                                <h6>نام خانوادگی </h6>
+                                <h6>استفاده شده توسط </h6>
                             </div>
                             <div className='col-3' style={{textAlign: 'center'}}>
-                                <h6>نام</h6>
+                                <h6>نام ایجاد کننده</h6>
                             </div>
 
                         </div>
 
                         {this.state.code.map((result, i) => (
-                            <div className='row'>
-                                <div className='col-3'
-                                     style={{textAlign: 'center', paddingTop: '20px', cursor: 'pointer'}}>
+                            <div className='row mr-0 ml-0'>
+                                <div className='col-3 text-center'
+                                     style={{
+                                         display: 'flex',
+                                         justifyContent: 'center',
+                                         alignItems: 'center',
+                                         flexDirection: 'column',
+                                         paddingTop: '20px'
+                                     }}>
 
                                     {new JDate(new Date(result.startTime)).date.join('/')}
                                 </div>
@@ -380,7 +411,7 @@ class AdminAddClass extends Component {
                                 </div>
 
 
-                                <div className='col-3' style={{
+                                <div className='col-3 text-center' style={{
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -388,9 +419,9 @@ class AdminAddClass extends Component {
                                     paddingTop: '20px'
                                 }}>
                                     {/*{result.name} {result.lastName}*/}
-                                     {result.lastName}
+                                     {result.userName}
                                 </div>
-                                <div className='col-3' style={{
+                                <div className='col-3 text-center' style={{
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -398,7 +429,7 @@ class AdminAddClass extends Component {
                                     paddingTop: '20px'
                                 }}>
                                     {/*{result.name} {result.lastName}*/}
-                                     {result.name}
+                                     {result.name +" "+result.lastName}
                                 </div>
                             </div>
                         ))}
@@ -406,7 +437,28 @@ class AdminAddClass extends Component {
                     </div>
 
                 </div>
+                <CenterModal  show={this.state.showModal} onHide={() =>    this.setState({
+                    showModal:false
+                })}>
+                    {
+                        <div className='w-100 d-flex align-items-center justify-content-center' dir='rtl' >
+                            <span>کد ایجاد شده :</span>
+                            <p className='font-weight-bold mb-0 mr-2 '>{this.state.trialCode}</p>
+                            <CopyToClipboard text={this.state.trialCode}
+                                             onCopy={() => this.setState({copied: true})}>
+                                <button className='mr-2'><AiOutlineCopy/></button>
+                            </CopyToClipboard>
 
+
+                        </div>
+
+                    }
+
+                </CenterModal>
+
+                <ALertCenter    isOpen={this.state.copied}
+                toggle={() => this.setState({copied: false})}
+                text={'متن کپی شد!'}/>
             </div>
 
 
