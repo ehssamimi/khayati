@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,6 +8,77 @@ import { Config } from '../../Utils'
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Logo from '../../photo/logo.png'
+import {AiOutlineCopy, AiOutlinePlus} from "react-icons/all";
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import {CenterModal} from "../Common/Modals/Modals";
+import {UseModals} from "../Common/Hooks/UseModals/UseModals";
+
+
+const PlusProduct=(props)=>{
+     const [modalShow, setModalShow] = React.useState(false);
+    const [text, setText] = React.useState(1);
+     const handelSubmit=()=>{
+         var Item={}
+
+         Item.inventory=text
+         Item.productId=props.id
+         console.log(Item)
+         var requestOptions = {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+                 'Accept': '*/*',
+                 "Authorization": "Basic MDkwMTY5OTE3NDI6QlJUN0MxNjAyOTcxODczNzA0"
+
+             },
+             body:JSON.stringify(Item)
+
+
+         };
+
+         fetch(Config()['apiUrl'] + "/admin/products/inventory", requestOptions)
+             .then(response => {
+
+                 if(response.status===200){
+                     response.json().then(rep => {
+                         console.log(rep)
+                         props.getItemShop();
+                         setModalShow(false);
+
+                     })
+                 }
+
+             })
+             .catch(error => console.log('error', error));
+     }
+
+    return(
+        <button className='mr-2' onClick={() => setModalShow(true)}><AiOutlinePlus/>
+
+        <CenterModal  header={"افزایش محصول"}  onHide={() => setModalShow(false)}  show={modalShow}>
+            <div className='w-100 d-flex justify-content-center align-items-center'>
+
+
+               <button className="btn btn-success mr-3" onClick={handelSubmit}>ثبت</button>
+                <input style={{
+                    width: '150px',
+                    backgroundColor: 'rgb(127, 127, 127,0.1)',
+                    borderRadius: '10px',
+                    borderColor: 'transparent',
+                    height: '30px',
+                    paddingRight: '10px'
+                }} onChange={(e) => {
+                    console.log(e.target.value);
+                    setText(e.target.value)
+                }} autoComplete='off' name='cost' className='inputAdd' value={text} type='number'/>
+            </div>
+        </CenterModal>
+        </button>
+    )
+
+
+
+}
 class AdminAddClass extends Component {
     componentDidMount() {
         console.log(this.state.name)
@@ -615,7 +686,8 @@ deletePack=(id)=>{
                                 <h6>قیمت</h6>
                             </div>
                             <div className='col-3' style={{ textAlign: 'center' }}>
-                                <h6>سایز</h6>
+                                {/*<h6>سایز</h6>*/}
+                                <h6>موجودی</h6>
                             </div>
                             <div className='col-3' style={{ textAlign: 'center' }}>
                                 <h6>نام</h6>
@@ -639,7 +711,7 @@ deletePack=(id)=>{
 
 
                                 </div>
-                                <div className='col-3' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>{result.size}</div>
+                                <div className='col-3 d-flex ' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'  }}><PlusProduct getItemShop={()=>{this.getItemShop()}} id={result.id} />{result.inventory} </div>
                                 <div className='col-3' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                                     {result.name}
                                 </div>

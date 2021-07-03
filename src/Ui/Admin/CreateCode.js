@@ -437,7 +437,7 @@ class AdminAddClass extends Component {
                     </div>
 
                 </div>
-                <CenterModal  show={this.state.showModal} onHide={() =>    this.setState({
+                <CenterModal header={'نمایش کد ایجاد شده'}  show={this.state.showModal} onHide={() =>    this.setState({
                     showModal:false
                 })}>
                     {

@@ -17,13 +17,17 @@ import Support from '../src/Ui/Admin/Support'
 import CreateCode from '../src/Ui/Admin/CreateCode'
 import AnswerToSser from '../src/Ui/Admin/AnswerToUser'
 import Viner from '../src/Ui/viner/Viner'
+import Success from "./Ui/StatusPay/Success";
+import Failed from "./Ui/StatusPay/Failed";
 class App extends Component{
   render(){
     return(
             <Router>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Route exact path='/' component={Signup} />
-                    <Route exact path='/dashboard' component={Dashboard} />
+                    <Route exact path='/success' component={Success} />
+                    <Route exact path='/failed' component={Failed} />
+                     <Route exact path='/dashboard/:status?' component={Dashboard} />
                     <Route exact path='/dashboard/profile' component={Profile}></Route>
                     <Route exact path='/dashboard/income' component={Income}></Route>
                     <Route exact path='/dashboard/course' component={Course}></Route>

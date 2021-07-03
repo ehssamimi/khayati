@@ -76,6 +76,8 @@ class dashboard extends Component {
         }
     }
     componentDidMount() {
+console.log("props.params.match")
+console.log(this.props.match.params.status)
 
 // localStorage.clear()
         this.setState({
@@ -370,7 +372,7 @@ else{
         window.location.replace('/dashboard/course')
     }
     clickOnproduct = (list) => {
-        console.log(list)
+         console.log(list)
 
         this.setState({
             list: list,
@@ -411,13 +413,32 @@ else{
         User.province = this.state.province
         User.useGemType = this.state.gemtype
 
-        var raw = JSON.stringify(User);
+        // var raw = JSON.stringify(User);
+        var purchaseAddress =  User ;
+
         console.log(raw)
 if(this.state.address===null || this.state.city===null || this.state.nationalCode===null  || this.state.no===null){
 this.setState({badreq:true})
 }
 else{
 
+        var User = {}
+        User.invitationCode = ''
+        User.uid = this.state.uid
+        User.amount = this.state.amountproduct
+
+        if (this.state.gemtype === 'TEN_PERCENT') {
+            User.amount = this.state.amountproduct * 0.9
+        }
+        if (this.state.gemtype === 'TWENTY_PERCENT') {
+            User.amount = this.state.amountproduct * 0.8
+        }
+         // User.amount = this.state.amountproduct * 0.1
+
+        User.amount=User.amount+'0'
+
+        var raw = JSON.stringify(User);
+        console.log(raw)
         var requestOptions1 = {
             method: 'POST',
             headers: {
@@ -429,60 +450,20 @@ else{
 
         };
 
-        fetch(Config()['apiUrl'] + "/product/purchase", requestOptions1)
-            .then(response => {
-                console.log(response)
-      
-                if (response.status === 200) {
+        fetch(Config()['apiUrl'] + "/payment/pay/web", requestOptions1)
+            .then(   response => {
+                // console.log(response)
 
-                    var User = {}
-                    User.invitationCode = ''
-                    User.uid = this.state.uid
-                    User.amount = this.state.amountproduct
+                response.json().then(async rep => {
+                    console.log( rep)
 
-                    if (this.state.gemtype === 'TEN_PERCENT') {
-                        User.amount = this.state.amountproduct * 0.9
-                    }
-                    if (this.state.gemtype === 'TWENTY_PERCENT') {
-                        User.amount = this.state.amountproduct * 0.8
+                     if (rep.status === 200) {
+                         purchaseAddress.transactionId=rep.transactionId
+                       await localStorage.setItem("purchaseAddress",JSON.stringify(purchaseAddress))
+                        window.location.replace(rep.Authority)
                     }
 
-                    User.amount=User.amount+'0'
-
-                    var raw = JSON.stringify(User);
-                    console.log(raw)
-                    var requestOptions1 = {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': '*/*',
-                            // "Authorization": "Basic " + window.localStorage.getItem('basic')
-                        },
-                        body: raw,
-
-                    };
-
-                    fetch(Config()['apiUrl'] + "/payment/pay/web", requestOptions1)
-                        .then(response => {
-                            console.log(response)
-
-                            response.json().then(rep => {
-
-
-                                if (rep.status === 200) {
-                                    window.location.replace(rep.Authority)
-                                }
-
-                            })
-
-
-
-
-
-                        })
-                        .catch(error => console.log('error', error));
-                }
-
+                })
 
 
 
@@ -490,6 +471,28 @@ else{
 
             })
             .catch(error => console.log('error', error));
+
+
+
+    // var requestOptions1 = {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': '*/*',
+    //         // "Authorization": "Basic " + window.localStorage.getItem('basic')
+    //     },
+    //     body: raw,
+    //
+    // };
+    //
+    //
+    //
+    //     fetch(Config()['apiUrl'] + "/product/purchase", requestOptions1)
+    //         .then(response => {
+    //             console.log(response)
+    //
+    //         })
+    //         .catch(error => console.log('error', error));
 }
       
     }
