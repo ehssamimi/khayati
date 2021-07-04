@@ -985,12 +985,13 @@ else{
 
     }
     checkType = (isbuy, result) => {
+
 if(result.price===0){
-    return <Button style={{ width: '70px', fontSize: '12px' , marginLeft:'15px'}} onClick={() => this.getLink(result)}>مشاهده </Button>
+    return <Button style={{ width: '70px', fontSize: '12px' , marginLeft:'15px'}} onClick={() => this.getLink(result)}>دانلود </Button>
 }
 else{
        if (isbuy === true) {
-            return <Button style={{ width: '70px', fontSize: '12px' , marginLeft:'15px'}} onClick={() => this.getLink(result)}>مشاهده</Button>
+            return <Button style={{ width: '70px', fontSize: '12px' , marginLeft:'15px'}} onClick={() => this.getLink(result)}>دانلود</Button>
         }
         else {
             return <Button style={{ width: '50px', fontSize: '12px', marginLeft:'15px' }} onClick={() => this.BuyTutorial(result)}>خرید</Button>
@@ -1519,7 +1520,7 @@ window.open(res.videoZipAddress)
                                                 <h6 style={{ fontSize: '10px' }}>{this.checkprice(result.price)}</h6>
                                             </div>
                                             <div style={{ marginRight: '90px' }}>
-                                                {this.checkType(result.isBuy, result)}
+                                                {this.checkType(result.hasUserPurchased, result)}
 
                                             </div>
                                         </div>
