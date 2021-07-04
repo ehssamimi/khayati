@@ -25,8 +25,8 @@ class App extends Component{
             <Router>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Route exact path='/' component={Signup} />
-                    <Route exact path='/success' component={Success} />
-                    <Route exact path='/failed' component={Failed} />
+                    <Route exact path='/dashboard/success' component={Success} />
+                    <Route exact path='/dashboard/failed' component={Failed} />
                      <Route exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/profile' component={Profile}></Route>
                     <Route exact path='/dashboard/income' component={Income}></Route>
