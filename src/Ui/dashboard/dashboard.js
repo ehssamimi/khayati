@@ -422,10 +422,16 @@ this.setState({badreq:true})
 }
 else{
 
+
+
+
         var User = {}
         User.invitationCode = ''
         User.uid = this.state.uid
         User.amount = this.state.amountproduct
+        User.productId = this.state.productId
+        User.unit = 1
+         User.useGemType = this.state.gemtype!==null?this.state.gemtype:"NOTHING"
 
         if (this.state.gemtype === 'TEN_PERCENT') {
             User.amount = this.state.amountproduct * 0.9
@@ -433,7 +439,7 @@ else{
         if (this.state.gemtype === 'TWENTY_PERCENT') {
             User.amount = this.state.amountproduct * 0.8
         }
-         // User.amount = this.state.amountproduct * 0.1
+         // User.amount = this.state.amountproduct * 0.01
 
         User.amount=User.amount+'0'
 
@@ -1141,7 +1147,9 @@ window.open(res.videoZipAddress)
         return price+" T " 
 
     }
+
     render() {
+
         return (
             <div className='row'>
                   <Snackbar open={this.state.badreq} autoHideDuration={6000} onClose={()=>this.setState({badreq:false})}>
