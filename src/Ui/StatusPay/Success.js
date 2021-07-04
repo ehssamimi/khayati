@@ -23,7 +23,7 @@ const Success = (props) => {
         User.recieverPhoneNumber = user.recieverPhoneNumber
         User.unit =user.unit
         User.province = user.province
-        User.useGemType = user.gemtype!==undefined?user.gemtype:""
+        User.useGemType = user.useGemType!==undefined?user.useGemType:""
 
         var raw = JSON.stringify(User);
         // console.log(user)

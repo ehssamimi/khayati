@@ -411,12 +411,12 @@ else{
         User.recieverPhoneNumber = this.state.recieverPhoneNumber
         User.unit = this.state.unit
         User.province = this.state.province
-        User.useGemType = this.state.gemtype
+        User.useGemType = this.state.gemtype===null?"NOTHING":this.state.gemtype
 
         // var raw = JSON.stringify(User);
         var purchaseAddress =  User ;
 
-        console.log(raw)
+        console.log(purchaseAddress)
 if(this.state.address===null || this.state.city===null || this.state.nationalCode===null  || this.state.no===null){
 this.setState({badreq:true})
 }
@@ -452,7 +452,6 @@ else{
 
         fetch(Config()['apiUrl'] + "/payment/pay/web", requestOptions1)
             .then(   response => {
-                // console.log(response)
 
                 response.json().then(async rep => {
                     console.log( rep)

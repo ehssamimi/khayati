@@ -27,7 +27,7 @@ class App extends Component{
                     <Route exact path='/' component={Signup} />
                     <Route exact path='/success' component={Success} />
                     <Route exact path='/failed' component={Failed} />
-                     <Route exact path='/dashboard/:status?' component={Dashboard} />
+                     <Route exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/profile' component={Profile}></Route>
                     <Route exact path='/dashboard/income' component={Income}></Route>
                     <Route exact path='/dashboard/course' component={Course}></Route>
