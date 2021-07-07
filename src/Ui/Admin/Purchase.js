@@ -569,19 +569,20 @@ handleClosedetail=()=>{
                   */}
                        
                        <div className='row' style={{paddingTop:'50px'}}>
-                        <div className='col-2' style={{ textAlign: 'center' }}>
+                        <div className='col-1' style={{ textAlign: 'center' }}>
                                 <h6>ارسال رایگان</h6>
                             </div>
                  
                          
-                            <div className='col-4' style={{ textAlign: 'center' }}>
+                            <div className='col-5' style={{ textAlign: 'center' }}>
                                 <h6>آدرس</h6>
                             </div>
-                            <div className='col-2' style={{ textAlign: 'center' }}>
-                                <h6>شهر</h6>
+                           <div className='col-2' style={{ textAlign: 'center' }}>
+                                <h6>کد پستی</h6>
                             </div>
+
                             <div className='col-2' style={{ textAlign: 'center' }}>
-                                <h6>نام خریدار</h6>
+                                <h6>نام خریدار (شماره تماس)</h6>
                             </div>
                             <div className='col-2' style={{ textAlign: 'center' }}>
                                 <h6>نام محصول</h6>
@@ -589,45 +590,71 @@ handleClosedetail=()=>{
                         </div>
                         {this.state.purchase.map((result, i) => (
                             <div className='row'>
-                                                <div className='col-2' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', paddingTop: '20px' }}>
-
-                            
-{result.freeShipping}
-
-
-</div>
-<div className='col-4' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', paddingTop: '20px' }}>
-
-                            
-{result.address}
+                                <div className='col-1 text-center' style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'column',
+                                    paddingTop: '20px'
+                                }}>
 
 
-</div>
-<div className='col-2' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', paddingTop: '20px' }}>
-
-                            
-{result.city}
+                                    {result.freeShipping}
 
 
-</div>
-<div className='col-2' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', paddingTop: '20px' }}>
-
-                            
-{result.recieverName}
-
-
-</div>
-
-                                <div className='col-2' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', paddingTop: '20px' }}>
-                                {result.productName}
                                 </div>
-                            
-    
-  
+                                <div className='col-5 text-center '  dir='rtl' style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'column',
+                                    paddingTop: '20px'
+                                }}>
 
-       
 
-                               
+                                      {result.city + " , " + result.address+" پلاک "+ result.no  }
+
+
+                                </div>
+                                <div className='col-2 text-center' style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'column',
+                                    paddingTop: '20px'
+                                }}>
+
+
+                                    {result.postalCode }
+
+
+                                </div>
+
+                                <div className='col-2 text-center' style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'column',
+                                    paddingTop: '20px'
+                                }}>
+
+
+                                    {result.recieverName+" ("+result.recieverPhoneNumber+")"}
+
+
+                                </div>
+
+                                <div className='col-2 text-center' style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'column',
+                                    paddingTop: '20px'
+                                }}>
+                                    {result.productName}
+                                </div>
+
+
                             </div>
                         ))}
 

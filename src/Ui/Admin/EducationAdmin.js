@@ -40,8 +40,13 @@ class AdminAddClass extends Component {
 
 
         };
+        var uid=1
+        if(localStorage.getItem("info")){
+          let info=  JSON.parse(localStorage.getItem("info"));
+             uid=info.id
+        }
 
-        fetch(Config()['apiUrl'] + "/premiumTutorial?uid=1", requestOptions)
+        fetch(Config()['apiUrl'] + `/premiumTutorial?uid=${uid}`, requestOptions)
             .then(response => {
 
 
@@ -558,7 +563,7 @@ window.location.reload()
                         </div>
 
                         {this.state.education.map((result, i) => (
-                            <div className='row'>
+                            <div className='row d-flex align-items-center'>
                                     <div className='col-2'  style={{  textAlign: 'center'}}>
                                 <Button onClick={()=>this.deletePack(result.id)} style={{ backgroundColor: 'red', border: 'transparent', width: '150px', height: '50px', color: 'black', borderRadius: '10px' }}>حذف</Button>
 
@@ -567,7 +572,6 @@ window.location.reload()
                                 <Button onClick={()=>this.showeditpop(result.id)} style={{ backgroundColor: '#4ce285', border: 'transparent', width: '150px', height: '50px', color: 'black', borderRadius: '10px' }}>ویرایش</Button>
 
                                 </div>
-                                
                                 <div className='col-2' style={{  textAlign: 'center' }}>
 
                                     {/* <img alt='' style={{ width: '80px' }} src={result.imageUrl}></img> */}
