@@ -40,11 +40,12 @@ class AdminAddClass extends Component {
 
 
         };
-        var uid=1
+        var uid=56
         if(localStorage.getItem("info")){
           let info=  JSON.parse(localStorage.getItem("info"));
              uid=info.id
         }
+        console.log(uid)
 
         fetch(Config()['apiUrl'] + `/premiumTutorial?uid=${uid}`, requestOptions)
             .then(response => {

@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Signup from '../src/Ui/signup/signup'
 import Dashboard from '../src/Ui/dashboard/dashboard'
 import Profile from '../src/Ui/profile/profile'
@@ -19,12 +19,42 @@ import AnswerToSser from '../src/Ui/Admin/AnswerToUser'
 import Viner from '../src/Ui/viner/Viner'
 import Success from "./Ui/StatusPay/Success";
 import Failed from "./Ui/StatusPay/Failed";
+import AdminAuth from "./Ui/Admin/AdminAuth";
+
+const AuthAdmin = ({ component: Component, authAdmin,props, ...rest }) => {
+    console.log("authAdmin")
+    console.log(authAdmin)
+    return(
+        <Route
+            {...rest}
+            render={props =>
+                authAdmin ? (
+                    <Component {...props} />
+                    // <Welcome {...props}  />
+                ) : (
+                    <AdminAuth  />
+                    // <Redirect
+                    //     to={{
+                    //         pathname: "/admin-auth",
+                    //         state: { from: props.location }
+                    //     }}
+                    // />
+                )
+            }
+        />
+
+    )
+
+
+};
+
 class App extends Component{
   render(){
     return(
             <Router>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Route exact path='/' component={Signup} />
+                     <Route exact path='/admin-auth' component={AdminAuth} />
                     <Route exact path='/dashboard/success' component={Success} />
                     <Route exact path='/dashboard/failed' component={Failed} />
                      <Route exact path='/dashboard' component={Dashboard} />
@@ -33,15 +63,25 @@ class App extends Component{
                     <Route exact path='/dashboard/course' component={Course}></Route>
                     <Route exact path='/dashboard/course/detail' component={CousreDetail}></Route>
                     <Route exact path='/admin/login' component={Login}></Route>
-                    <Route exact path='/admin/dashboard' component={AdminDash}></Route>
-                    <Route exact path='/admin/store' component={AdminStore}></Route>
-                    <Route exact path='/admin/education' component={AdminEdu}></Route>
-                    <Route exact path='/admin/deposit' component={Deposit}></Route>
-                    <Route exact path='/admin/setting' component={Setting}></Route>
-                    <Route exact path='/admin/purchase' component={Purchase}></Route>
-                    <Route exact path='/admin/support' component={Support}></Route>
-                    <Route exact path='/admin/createcode' component={CreateCode}></Route>
-                    <Route exact path='/admin/answertouser' component={AnswerToSser}></Route>
+                    <AuthAdmin path="/admin/dashboard" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminDash {...props}  />}  />
+                    <AuthAdmin path="/admin/store" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminStore {...props}  />}  />
+                    <AuthAdmin path="/admin/education" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminEdu {...props}  />}  />
+                    <AuthAdmin path="/admin/deposit" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Deposit {...props}  />}  />
+                    <AuthAdmin path="/admin/setting" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Setting {...props}  />}  />
+                    <AuthAdmin path="/admin/purchase" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Purchase {...props}  />}  />
+                    <AuthAdmin path="/admin/support" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Support {...props}  />}  />
+                    <AuthAdmin path="/admin/createcode" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <CreateCode {...props}  />}  />
+                    <AuthAdmin path="/admin/answertouser" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AnswerToSser {...props}  />}  />
+
+                    {/*<Route exact path='/admin/dashboard' component={AdminDash}></Route>*/}
+                    {/*<Route exact path='/admin/store' component={AdminStore}></Route>*/}
+                    {/*<Route exact path='/admin/education' component={AdminEdu}></Route>*/}
+                    {/*<Route exact path='/admin/deposit' component={Deposit}></Route>*/}
+                    {/*<Route exact path='/admin/setting' component={Setting}></Route>*/}
+                    {/*<Route exact path='/admin/purchase' component={Purchase}></Route>*/}
+                    {/*<Route exact path='/admin/support' component={Support}></Route>*/}
+                    {/*<Route exact path='/admin/createcode' component={CreateCode}></Route>*/}
+                    {/*<Route exact path='/admin/answertouser' component={AnswerToSser}></Route>*/}
                     <Route exact path='/viner' component={Viner}></Route>
                 </Suspense>
             </Router>
