@@ -20,6 +20,7 @@ import Viner from '../src/Ui/viner/Viner'
 import Success from "./Ui/StatusPay/Success";
 import Failed from "./Ui/StatusPay/Failed";
 import AdminAuth from "./Ui/Admin/AdminAuth";
+import DownloadApp from "./Ui/DownloadApp/DownloadApp";
 
 const AuthAdmin = ({ component: Component, authAdmin,props, ...rest }) => {
     console.log("authAdmin")
@@ -63,6 +64,7 @@ class App extends Component{
                     <Route exact path='/dashboard/course' component={Course}></Route>
                     <Route exact path='/dashboard/course/detail' component={CousreDetail}></Route>
                     <Route exact path='/admin/login' component={Login}></Route>
+                    <Route exact path='/app' component={DownloadApp}></Route>
                     <AuthAdmin path="/admin/dashboard" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminDash {...props}  />}  />
                     <AuthAdmin path="/admin/store" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminStore {...props}  />}  />
                     <AuthAdmin path="/admin/education" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminEdu {...props}  />}  />
