@@ -176,7 +176,7 @@ last_submit=()=>{
 
     };
     this.showSpinner()
-    fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+    fetch(Config()['apiUrl']+'/user/uploadImg?mobile='+window.localStorage.getItem('username'),requestOptions)
         .then(response =>{
             console.log(response)
                 // if(response.status===200){

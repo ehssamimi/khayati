@@ -159,7 +159,7 @@ last_submit=()=>{
 
     };
     this.showSpinner()
-    fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+    fetch(Config()['apiUrl']+'/user/uploadImg?mobile='+window.localStorage.getItem('username'),requestOptions)
         .then(response =>{
             console.log(response)
                 // if(response.status===200){
@@ -209,7 +209,7 @@ onChange2(e) {
 
     };
     this.showSpinner()
-    fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+    fetch(Config()['apiUrl']+'/user/uploadImg?mobile='+window.localStorage.getItem('username'),requestOptions)
         .then(response =>{
             console.log(response)
                 // if(response.status===200){
@@ -260,7 +260,7 @@ onChange3(e) {
 
     };
     this.showSpinner()
-    fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+    fetch(Config()['apiUrl']+'/user/uploadImg?mobile='+window.localStorage.getItem('username'),requestOptions)
         .then(response =>{
             console.log(response)
                 // if(response.status===200){

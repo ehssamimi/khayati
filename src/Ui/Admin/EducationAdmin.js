@@ -117,7 +117,7 @@ class AdminAddClass extends Component {
 
         };
       
-        fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+        fetch(Config()['apiUrl']+'/user/uploadImg?mobile='+window.localStorage.getItem('username'),requestOptions)
             .then(response =>
                 response.json().then(rep => {
                     console.log(rep)
@@ -160,7 +160,7 @@ class AdminAddClass extends Component {
 
         };
       
-        fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+        fetch(Config()['apiUrl']+'/user/uploadImg?mobile='+window.localStorage.getItem('username'),requestOptions)
             .then(response =>
                 response.json().then(rep => {
                     console.log(rep)

@@ -3,16 +3,16 @@ import {Button, Modal} from "react-bootstrap";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 
-export const CenterModal = (props) => {
-    const {
-
-        onHide,
-        className,header,Body,submit
-    } = props;
+export const CenterModal = ({  onHide,
+                                className,header,Body,submit,show,children }) => {
+    // const {
+    //
+    //
+    // } = props;
 
     return (
         <Modal
-            {...props}
+            show={show} onHide={onHide}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -24,7 +24,7 @@ export const CenterModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 {
-                    props.children
+                   children
                 }
             </Modal.Body>
             <Modal.Footer>

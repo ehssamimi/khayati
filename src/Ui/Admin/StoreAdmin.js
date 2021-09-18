@@ -53,9 +53,10 @@ const PlusProduct=(props)=>{
      }
 
     return(
+        <>
         <button className='mr-2' onClick={() => setModalShow(true)}><AiOutlinePlus/>
-
-        <CenterModal  header={"افزایش محصول"}  onHide={() => setModalShow(false)}  show={modalShow}>
+        </button>
+        <CenterModal  header={"افزایش محصول"}  onHide={() =>{setModalShow(false); console.log("close")} }  show={modalShow}>
             <div className='w-100 d-flex justify-content-center align-items-center'>
 
 
@@ -73,7 +74,7 @@ const PlusProduct=(props)=>{
                 }} autoComplete='off' name='cost' className='inputAdd' value={text} type='number'/>
             </div>
         </CenterModal>
-        </button>
+   </>
     )
 
 
@@ -101,7 +102,8 @@ console.log(window.localStorage.getItem('basic'))
             blur:false,
             toast_blur:false,
             imageUrl:'',
-            id_edit:''
+            id_edit:'',
+            inventory:1,
 
         }
     }
@@ -177,6 +179,11 @@ console.log(window.localStorage.getItem('basic'))
                 size: event.target.value
             })
         }
+        if (event.target.name === "inventory") {
+            this.setState({
+                inventory: event.target.value
+            })
+        }
     }
    
     onChange(e) {
@@ -202,7 +209,8 @@ console.log(window.localStorage.getItem('basic'))
 
         };
         this.showSpinner()
-        fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+        // fetch(Config()['apiUrl']+'/user/uploadImg?mobile=09016991742',requestOptions)
+        fetch(Config()['apiUrl']+`/user/uploadImg?mobile=${window.localStorage.getItem('username')}`,requestOptions)
             .then(response =>
                 response.json().then(rep => {
                     console.log(rep)
@@ -253,6 +261,8 @@ last_submit=()=>{
    Item.price=parseInt(this.state.cost)
    Item.size=this.state.size
    Item.weight=this.state.weight
+   Item.inventory=this.state.inventory
+
     var requestOptions = {
         method: 'POST',
         headers: {
@@ -265,17 +275,17 @@ last_submit=()=>{
 
 
     };
-console.log(Item)
+    console.log(Item)
     fetch(Config()['apiUrl'] + "/admin/products", requestOptions)
         .then(response => {
 
-if(response.status===200){
-     response.json().then(rep => {
-             console.log(rep)
-window.location.reload()
+            if (response.status === 200) {
+                response.json().then(rep => {
+                    console.log(rep)
+                    window.location.reload()
 
-            })
-}
+                })
+            }
 
            
 
@@ -541,14 +551,14 @@ deletePack=(id)=>{
                                 <div className='row' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     <div className='col-11'>
                                         <div className='content' >
-                                            <div class='row' >
-                                                <div class='col-4' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+                                            <div className='row' >
+                                                <div className='col-4' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
                                                     <h6>
                                                         هزینه
                                                     </h6>
                                                     <input style={{ width: '150px', backgroundColor: 'rgb(127, 127, 127,0.1)', borderRadius: '10px', borderColor: 'transparent', height: '30px', paddingRight: '10px' }} onChange={this.changetext} autoComplete='off' name='cost' className='inputAdd'></input>
                                                 </div>
-                                                <div class='col-4  ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+                                                <div className='col-4  ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
                                                     <h6>
                                                         سایز لباس
                                                     </h6>
@@ -570,21 +580,21 @@ deletePack=(id)=>{
                                                     </Select>
                                                 </div>
 
-                                                <div class='col-4 ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+                                                <div className='col-4 ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
 
                                                     <h6>نام محصول</h6>
                                                     <input onChange={this.changetext} name='name' style={{ width: '150px', backgroundColor: 'rgb(127, 127, 127,0.1)', borderRadius: '10px', borderColor: 'transparent', height: '30px', paddingRight: '10px' }} className='inputAdd'></input>
 
                                                 </div>
                                             </div>
-                                            <div class='row' >
-                                                <div class='col-4' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+                                            <div className='row' >
+                                                <div className='col-4' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
                                                     <h6>
                                                         رنگ
                                                     </h6>
                                                     <input style={{ width: '150px', backgroundColor: 'rgb(127, 127, 127,0.1)', borderRadius: '10px', borderColor: 'transparent', height: '30px', paddingRight: '10px' }} onChange={this.changetext} autoComplete='off' name='color' className='inputAdd'></input>
                                                 </div>
-                                                <div class='col-4  ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+                                                <div className='col-4  ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
                                                     <h6>
                                                       اندازه
                                                     </h6>
@@ -592,13 +602,19 @@ deletePack=(id)=>{
 
                                                 </div>
 
-                                                <div class='col-4 ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+                                                <div className='col-4 ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
 
                                                     <h6>جنس</h6>
                                                     <input onChange={this.changetext} name='material' style={{ width: '150px', backgroundColor: 'rgb(127, 127, 127,0.1)', borderRadius: '10px', borderColor: 'transparent', height: '30px', paddingRight: '10px' }} className='inputAdd'></input>
 
                                                 </div>
-                                            </div>
+                                                <div className='col-4 ' style={{ display: 'flex', flexDirection: 'row-reverse', textAlign: 'right', paddingTop: '15px', justifyContent: 'center', alignItems: 'center' }}>
+
+                                                    <h6>تعداد</h6>
+                                                    <input onChange={this.changetext} name='inventory' style={{ width: '150px', backgroundColor: 'rgb(127, 127, 127,0.1)', borderRadius: '10px', borderColor: 'transparent', height: '30px', paddingRight: '10px' }} className='inputAdd'></input>
+
+                                                </div>
+                                             </div>
 
 
 
@@ -711,6 +727,7 @@ deletePack=(id)=>{
 
 
                                 </div>
+
                                 <div className='col-3 d-flex ' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'  }}><PlusProduct getItemShop={()=>{this.getItemShop()}} id={result.id} />{result.inventory} </div>
                                 <div className='col-3' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                                     {result.name}
