@@ -550,6 +550,7 @@ else{
             showpopupBuy: true
         })
     }
+
     handleClosepopupBuy = () => {
         this.setState({
             showpopupBuy: false
@@ -1147,6 +1148,10 @@ window.open(res.videoZipAddress)
         return price+" T " 
 
     }
+    handleExit = async() => {
+   await window.localStorage.clear();
+   window.location.replace('/')
+    }
 
     render() {
 
@@ -1441,7 +1446,7 @@ window.open(res.videoZipAddress)
                                         <img  alt='' style={{ width: '60px', padding: '10px' }} src={crown}></img>
                                     </div>
                                     <div className='col-2' hidden={this.state.vip}>
-                                        <h6 onClick={this.PayVip} alt='' style={{  padding: '10px',cursor:'pointer',color:'blue' }} >خرید حساب ویژه</h6>
+                                        <h6 onClick={this.PayVip}   style={{  padding: '10px',cursor:'pointer',color:'blue' }} >خرید حساب ویژه</h6>
                                     </div>
                                     <div className='col-6' hidden={this.state.showTimer}>
                                        
@@ -1450,11 +1455,15 @@ window.open(res.videoZipAddress)
                               <h6>{this.state.timeExp}</h6>
                                     
                                     </div>
-                                    <div className='col-3' onClick={this.transfer} style={{ display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center' }}>
-                                        <img className='imagetag'  alt='' style={{ width: '100px', padding: '10px' }} src={this.state.info.profileUrl} ></img>
-                                        {this.state.info.name}
-                                      
+                                    <div className='col-3' style={{ display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center' }}>
+                                        <span  onClick={this.transfer}  style={{ display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center' }}>
+                                              <img className='imagetag'  alt='' style={{ width: '100px', padding: '10px' }} src={this.state.info.profileUrl} ></img>
+                                            {this.state.info.name}
+                                        </span>
+                                      <span onClick={this.handleExit} className="text-danger " style={{cursor:"pointer"}}>(خروج)</span>
                                     </div>
+
+
                                    
                                 </div>
                                 <div className='row'>
