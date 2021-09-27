@@ -22,32 +22,42 @@ import Failed from "./Ui/StatusPay/Failed";
 import AdminAuth from "./Ui/Admin/AdminAuth";
 import DownloadApp from "./Ui/DownloadApp/DownloadApp";
 
-const AuthAdmin = ({ component: Component, authAdmin,props, ...rest }) => {
-    console.log("authAdmin")
-    console.log(authAdmin)
+const AuthAdmin = ({ component: Component, authAdmin,props,authUser, ...rest }) => {
+
     return(
         <Route
             {...rest}
             render={props =>
-                authAdmin ? (
-                    <Component {...props} />
-                    // <Welcome {...props}  />
-                ) : (
-                    <AdminAuth  />
-                    // <Redirect
-                    //     to={{
-                    //         pathname: "/admin-auth",
-                    //         state: { from: props.location }
-                    //     }}
-                    // />
+                authUser?(
+                        authAdmin ? (
+                            <Component {...props} />
+                            // <Welcome {...props}  />
+                        ) : (
+                            <AdminAuth  />
+                            // <Redirect
+                            //     to={{
+                            //         pathname: "/admin-auth",
+                            //         state: { from: props.location }
+                            //     }}
+                            // />
+                        )
+                    ):(
+                    <Redirect
+                        to={{
+                            pathname: "/",
+                            state: { from: props.location }
+                        }}
+                    />
                 )
+
+
+
             }
         />
 
     )
-
-
 };
+
 
 class App extends Component{
   render(){
@@ -65,15 +75,15 @@ class App extends Component{
                     <Route exact path='/dashboard/course/detail' component={CousreDetail}></Route>
                     <Route exact path='/admin/login' component={Login}></Route>
                     <Route exact path='/app' component={DownloadApp}></Route>
-                    <AuthAdmin path="/admin/dashboard" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminDash {...props}  />}  />
-                    <AuthAdmin path="/admin/store" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminStore {...props}  />}  />
-                    <AuthAdmin path="/admin/education" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AdminEdu {...props}  />}  />
-                    <AuthAdmin path="/admin/deposit" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Deposit {...props}  />}  />
-                    <AuthAdmin path="/admin/setting" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Setting {...props}  />}  />
-                    <AuthAdmin path="/admin/purchase" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Purchase {...props}  />}  />
-                    <AuthAdmin path="/admin/support" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <Support {...props}  />}  />
-                    <AuthAdmin path="/admin/createcode" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <CreateCode {...props}  />}  />
-                    <AuthAdmin path="/admin/answertouser" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} component={(props) => <AnswerToSser {...props}  />}  />
+                    <AuthAdmin path="/admin/dashboard" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} authUser={localStorage.getItem('username')} component={(props) => <AdminDash {...props}  />}  />
+                    <AuthAdmin path="/admin/store" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <AdminStore {...props}  />}  />
+                    <AuthAdmin path="/admin/education" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <AdminEdu {...props}  />}  />
+                    <AuthAdmin path="/admin/deposit" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <Deposit {...props}  />}  />
+                    <AuthAdmin path="/admin/setting" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <Setting {...props}  />}  />
+                    <AuthAdmin path="/admin/purchase" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <Purchase {...props}  />}  />
+                    <AuthAdmin path="/admin/support" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <Support {...props}  />}  />
+                    <AuthAdmin path="/admin/createcode" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')}  component={(props) => <CreateCode {...props}  />}  />
+                    <AuthAdmin path="/admin/answertouser" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}   authUser={localStorage.getItem('username')} component={(props) => <AnswerToSser {...props}  />}  />
 
                     {/*<Route exact path='/admin/dashboard' component={AdminDash}></Route>*/}
                     {/*<Route exact path='/admin/store' component={AdminStore}></Route>*/}

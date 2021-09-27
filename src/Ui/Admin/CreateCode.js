@@ -205,7 +205,7 @@ class AdminAddClass extends Component {
 
                 <>
                     <Navbar expand="lg">
-                        <Navbar.Brand href="#home">
+                        <Navbar.Brand href="/dashboard">
                             <img style={{width: '50px'}} alt='' src={Logo}></img>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
