@@ -73,7 +73,8 @@ class App extends Component{
                     <Route exact path='/dashboard/income' component={Income}></Route>
                     <Route exact path='/dashboard/course' component={Course}></Route>
                     <Route exact path='/dashboard/course/detail' component={CousreDetail}></Route>
-                    <Route exact path='/admin/login' component={Login}></Route>
+                    <Route exact path='/admin/login' component={Signup}></Route>
+                    {/*<Route exact path='/admin/login' component={Login}></Route>*/}
                     <Route exact path='/app' component={DownloadApp}></Route>
                     <AuthAdmin path="/admin/dashboard" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} authUser={localStorage.getItem('username')} component={(props) => <AdminDash {...props}  />}  />
                     <AuthAdmin path="/admin/store" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <AdminStore {...props}  />}  />

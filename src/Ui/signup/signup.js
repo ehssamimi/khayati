@@ -30,6 +30,7 @@ const renderer = ({ minutes, seconds }) => {
 
 }
 class signup extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -42,8 +43,8 @@ class signup extends Component {
         }
     }
     componentDidMount(){
-      
-        if(window.localStorage.getItem('basic')!==null){
+
+         if(window.localStorage.getItem('basic')!==null){
             window.location.replace('/dashboard')
         }
         var loc =window.location.href
@@ -133,7 +134,13 @@ class signup extends Component {
 
                             window.localStorage.setItem('username', this.state.phoneN)
                             window.localStorage.setItem('password', rep.password)
-                            window.location.replace('/dashboard')
+                            if (this.props.location.pathname==="/admin/login"){
+                                window.location.replace('/admin/dashboard')
+
+                            }else {
+                                window.location.replace('/dashboard')
+
+                            }
 
                         })
 
@@ -171,6 +178,8 @@ class signup extends Component {
                         response.json().then(rep => {
                             window.localStorage.setItem('username', this.state.phoneN)
                             window.localStorage.setItem('password', rep.password)
+
+
                             window.location.replace('/dashboard')
 
 

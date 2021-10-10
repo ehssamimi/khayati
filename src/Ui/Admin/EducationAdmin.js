@@ -40,7 +40,7 @@ class AdminAddClass extends Component {
 
 
         };
-        var uid=56
+        var uid=5
         if(localStorage.getItem("info")){
           let info=  JSON.parse(localStorage.getItem("info"));
              uid=info.id

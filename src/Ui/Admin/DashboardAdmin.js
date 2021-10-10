@@ -73,6 +73,29 @@ class AdminAddClass extends Component {
             .catch(error => console.log('error', error));
     }
 
+    getInfo() {
+        var requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*',
+                // "Authorization": "Basic " + window.localStorage.getItem('basic')
+
+            }
+
+
+        };
+
+        fetch(Config()['apiUrl'] + "/user?mobile="+window.localStorage.getItem('username'), requestOptions)
+            .then(response => {
+                response.json().then(rep => {
+                     console.log(rep)
+                    window.localStorage.setItem('info', JSON.stringify(rep))
+                })
+
+            })
+            .catch(error => console.log('error', error));
+    }
     changetext = (event) => {
         if (event.target.name === "name") {
             this.setState({
