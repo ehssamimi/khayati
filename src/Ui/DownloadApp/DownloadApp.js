@@ -33,13 +33,13 @@ const DownloadApp = (props) => {
                              src='./img/app/android.png' width="80%"  style={{maxWidth:"600px"}}  />
 
                     </a>
-                    <div className='fixed-action-btn'>
-                        <a  href='#' download className="   d-flex align-items-center justify-content-center pr-2 pl-2  "  style={{courser:"pointer"}}>
-                            <img alt="get app"
-                                 src='./img/app/web.png' width="80%" style={{maxWidth:"600px"}}   />
+                    {/*<div className='fixed-action-btn'>*/}
+                    {/*    <a  href='#' download className="   d-flex align-items-center justify-content-center pr-2 pl-2  "  style={{courser:"pointer"}}>*/}
+                    {/*        <img alt="get app"*/}
+                    {/*             src='./img/app/web.png' width="80%" style={{maxWidth:"600px"}}   />*/}
 
-                        </a>
-                    </div>
+                    {/*    </a>*/}
+                    {/*</div>*/}
 
 
 
