@@ -1,0 +1,93 @@
+ /*********Yekan-Bakh********/
+
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: 900;
+    src: url('Fonts/YekanBakh-Fat.ttf');
+    src:url('Fonts/YekanBakh-Fat.ttf') format('truetype');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: 800;
+    src: url('Fonts/YekanBakh-Heavy.ttf');
+    src:url('Fonts/YekanBakh-Heavy.ttf') format('truetype');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: bold;
+    src: url('Fonts/YekanBakh-Bold.ttf');
+    src:url('Fonts/YekanBakh-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: 500;
+    src: url('Fonts/YekanBakh-Medium.ttf');
+    src: url('Fonts/YekanBakh-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: 400;
+    src: url('Fonts/YekanBakh-Regular.ttf');
+    src: url('Fonts/YekanBakh-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: 300;
+    src: url('Fonts/YekanBakh-Light.ttf');
+    src: url('Fonts/YekanBakh-Light.ttf') format('truetype');
+}
+/*********Diam-Yekan********/
+ @font-face {
+     font-family: DimaYekan;
+     font-style: normal;
+     font-weight: 400;
+     src: url('Fonts/DimaYekanRegular.ttf');
+     src:url('Fonts/DimaYekanRegular.ttf') format('truetype');
+ }
+ @font-face {
+     font-family: DimaYekan;
+     font-style: normal;
+     src: url('Fonts/DimaYekanWeb.ttf');
+     src:url('Fonts/DimaYekanWeb.ttf') format('truetype');
+ }
+ /*********Diam-Yekan********/
+ @font-face {
+     font-family: BYekan;
+     font-style: normal;
+     src: url('Fonts/BYekan+.ttf');
+     src:url('Fonts/BYekan+.ttf') format('truetype');
+ }
+ @font-face {
+     font-family: BYekan;
+     font-style: normal;
+     font-weight: bold;
+     src: url('Fonts/BYekan+ Bold.ttf');
+     src:url('Fonts/BYekan+ Bold.ttf') format('truetype');
+ }
+ /*********Yekan-Fat********/
+ @font-face {
+     font-family: YekanFat;
+     font-style: normal;
+     src: url('Fonts/YekanBakh-Fat.ttf');
+     src:url('Fonts/YekanBakh-Fat.ttf') format('truetype');
+ }
+
+
+ .YekanBakh{
+     font-family: YekanBakh !important;
+ }
+ .YekanFat{
+     font-family: YekanFat !important;
+ }
+ .DimaYekan{
+     font-family: DimaYekan !important;
+ }
+ .BYekan{
+     font-family: BYekan !important;
+ }

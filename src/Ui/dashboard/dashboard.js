@@ -1628,7 +1628,7 @@ window.open(res.videoZipAddress)
 
 
                                 </div>
-                                <div id='idofdiv' style={{ height: '65%', overflowY: 'auto', display: 'flex', flexDirection: 'column', paddingRight:'70px',paddingLeft:'70px' }}>
+                                <div id='idofdiv' style={{ height: '57%', overflowY: 'auto', display: 'flex', flexDirection: 'column', paddingRight:'70px',paddingLeft:'70px' }}>
                                     {this.state.chatHistory.map((result, i) => (
 
                                         <div className='row' style={{ display: 'flex', flexDirection: 'column' }}>

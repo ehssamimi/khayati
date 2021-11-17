@@ -65,17 +65,17 @@ class App extends Component{
             <Router>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Route exact path='/' component={Signup} />
-                     <Route exact path='/admin-auth' component={AdminAuth} />
-                    <Route exact path='/dashboard/success' component={Success} />
-                    <Route exact path='/dashboard/failed' component={Failed} />
-                     <Route exact path='/dashboard' component={Dashboard} />
-                    <Route exact path='/dashboard/profile' component={Profile}></Route>
-                    <Route exact path='/dashboard/income' component={Income}></Route>
-                    <Route exact path='/dashboard/course' component={Course}></Route>
-                    <Route exact path='/dashboard/course/detail' component={CousreDetail}></Route>
-                    <Route exact path='/admin/login' component={Signup}></Route>
+                    <Route   path='/admin-auth' component={AdminAuth} />
+                    <Route   path='/dashboard/success' component={Success} />
+                    <Route   path='/dashboard/failed' component={Failed} />
+                    <Route   path='/dashboard' component={Dashboard} />
+                    <Route   path='/dashboard/profile' component={Profile}/>
+                    <Route   path='/dashboard/income' component={Income}/>
+                    <Route   path='/dashboard/course' component={Course}/>
+                    <Route   path='/dashboard/course/detail' component={CousreDetail}/>
+                    <Route   path='/admin/login' component={Signup}/>
                     {/*<Route exact path='/admin/login' component={Login}></Route>*/}
-                    <Route exact path='/app' component={DownloadApp}></Route>
+                    <Route   path='/app' component={DownloadApp}/>
                     <AuthAdmin path="/admin/dashboard" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false} authUser={localStorage.getItem('username')} component={(props) => <AdminDash {...props}  />}  />
                     <AuthAdmin path="/admin/store" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <AdminStore {...props}  />}  />
                     <AuthAdmin path="/admin/education" authAdmin={localStorage.getItem('adminAccess')?localStorage.getItem('adminAccess'):false}  authUser={localStorage.getItem('username')} component={(props) => <AdminEdu {...props}  />}  />
@@ -95,7 +95,7 @@ class App extends Component{
                     {/*<Route exact path='/admin/support' component={Support}></Route>*/}
                     {/*<Route exact path='/admin/createcode' component={CreateCode}></Route>*/}
                     {/*<Route exact path='/admin/answertouser' component={AnswerToSser}></Route>*/}
-                    <Route exact path='/viner' component={Viner}></Route>
+                    <Route exact path='/viner' component={Viner}/>
                 </Suspense>
             </Router>
     )
